@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.visualization.epidemic.Mapper.HistoryMapper">
+
+
+    <select id="findHistory" parameterType="History" resultType="History">
+        select *
+        from history
+        where update_time = #{update_time};
+    </select>
+
+    <update id="updateHistory" parameterType="History">
+        update history
+        set cumulative_cases=#{cumulative_cases},
+            cumulative_recovered=#{cumulative_recovered},
+            cumulative_deaths=#{cumulative_deaths}
+        where update_time = #{update_time};
+    </update>
+
+    <insert id="saveHistory" parameterType="History">
+        insert into history(update_time, cumulative_cases, cumulative_recovered, cumulative_deaths)
+        values (#{update_time}, #{cumulative_cases}, #{cumulative_recovered}, #{cumulative_deaths});
+    </insert>
+
+    <select id="findToday" resultType="History">
+        select *
+        from (SELECT * FROM history ORDER BY id DESC LIMIT 5) as `h*`
+        order by id;
+    </select>
+
+    <select id="findonlyToday" resultType="History">
+        SELECT *
+        FROM history
+        ORDER BY update_time DESC
+        LIMIT 1;
+    </select>
+
+</mapper>
+
+
+

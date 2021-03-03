@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.visualization.epidemic.Mapper.DetailsMapper">
+
+
+    <select id="findDetails" parameterType="Details" resultType="Details">
+        select *
+        from details
+        where ds = #{ds}and province =#{province};
+    </select>
+
+    <update id="updateDetails" parameterType="Details">
+        update details
+        set cumulative_cases=#{cumulative_cases},
+            active_cases_change=#{active_cases_change},
+            cumulative_recovered=#{cumulative_recovered},
+            recovered_add=#{recovered_add},
+            cumulative_deaths=#{cumulative_deaths},
+            dead_add=#{dead_add},
+            province=#{province},
+            ds=#{ds}
+        where ds = #{ds}and province=#{province};
+    </update>
+
+    <insert id="saveDetails" parameterType="Details">
+        insert into details(ds, cumulative_cases, active_cases_change, cumulative_recovered, recovered_add,
+                            cumulative_deaths, dead_add, province)
+        values (#{ds}, #{cumulative_cases}, #{active_cases_change}, #{cumulative_recovered}, #{recovered_add},
+                #{cumulative_deaths}, #{dead_add}, #{province});
+    </insert>
+
+    <select id="findToday" resultType="Details">
+        SELECT *
+        FROM details
+        ORDER BY ds DESC
+        LIMIT 1;
+    </select>
+
+    <select id="findEachDayTotal" resultType="Details">
+        SELECT ds, province, cumulative_cases, cumulative_recovered, cumulative_deaths
+        FROM details
+        group by province, ds;
+    </select>
+
+    <select id="findEachDayAdd" resultType="Details">
+        SELECT sum(id)                   as id,
+               ds,
+               sum(cumulative_cases)     as cumulative_cases,
+               sum(active_cases_change)  as active_cases_change,
+               sum(cumulative_recovered) as cumulative_recovered,
+               sum(recovered_add)        as recovered_add,
+               sum(cumulative_deaths)    as cumulative_deaths,
+               sum(dead_add)             as dead_add,
+               count(province)           as province
+        FROM details
+        group by ds;
+    </select>
+
+    <select id="findProvince" resultType="String">
+        SELECT province
+        FROM details
+        order by ds desc
+        limit 14;
+
+    </select>
+
+    <select id="findProvinceValue" resultType="Integer">
+        SELECT sum(cumulative_cases)
+        FROM details
+        where ds = (select ds
+                    from details
+                    order by ds desc
+                    limit 1)
+        group by province;
+    </select>
+</mapper>
+
+
+

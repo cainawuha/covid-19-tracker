@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <!--    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>-->
+    <script src="js/echarts.min.js"></script>
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+
+
+    <!-- 必须先引入china.js 这个文件 因为中国地图需要 -->
+    <!--    <script src="https://echarts-maps.github.io/echarts-countries-js/echarts-countries-js/Canada.js"></script>-->
+    <script src="js/Canada.js"></script>
+    <script src="js/dark.js"></script>
+    <script src="js/echarts-wordcloud.min.js"></script>
+
+    <!--    此处路径有变(删除了static),因为springboot默认加载路径-->
+</head>
+
+<body>
+<div id="title">Canada COVID-19 tracker</div>
+<div id="time"></div>
+<div id="timeUpdate"></div>
+<div id="link">
+    <dt>Links:</dt>
+    <br>
+    <dd><a href="https://www.canada.ca/en/public-health.html" style="color: #FFFFFF" target="_blank">Public Health
+        Agency of Canada</a></dd>
+    <br>
+    <dd><a href="http://www.health.gov.on.ca/en/pro/programs/publichealth/coronavirus/2019_guidance.aspx"
+           style="color: #FFFFFF" target="_blank">Ontario Health Department</a></dd>
+</div>
+<div id="l1"></div>
+<div id="l2"></div>
+<div id="c1">
+    <div class="num">
+        <h1></h1>
+    </div>
+    <div class="num">
+        <h1>&nbsp;</h1>
+    </div>
+    <div class="num">
+        <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+    </div>
+    <div class="num">
+        <h1>&nbsp;&nbsp;&nbsp;</h1>
+    </div>
+    <div class="txt">
+        <h2>total_cases</h2>
+    </div>
+    <div class="txt">
+        <h2>&nbsp;&nbsp;total_resolved</h2>
+    </div>
+    <div class="txt">
+        <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total_deceased</h2>
+    </div>
+</div>
+
+<div id="c2"></div>
+<!--    <div id="r1">右一</div>-->
+<div id="r2">右二</div>
+<script src="js/controller.js"></script>
+<script src="js/ec_center.js"></script>
+<script src="js/ec_left1.js"></script>
+<script src="js/ec_left2.js"></script>
+<!--    <script src="js/ec_right1.js"></script>-->
+<script src="js/ec_right2.js"></script>
+
+
+</body>
+
+</html>
