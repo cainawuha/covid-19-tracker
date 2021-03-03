@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.visualization.epidemic.EpidemicApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.367 s - in com.visualization.epidemic.EpidemicApplicationTests
